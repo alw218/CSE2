@@ -30,9 +30,9 @@ public class BigMac{
         //convert cost to dollars dimes and pennies
         dollars=(int) cost$;
         dimes=(int)(cost$*10)%10;
-        pennies=(int)(cost$*100)%100;
+        pennies=(int)(cost$*100)%10;
         //print output
         System.out.println("The total cost of "+nBigMacs+" Big Macs, at $"+bigMac$+", with a sales tax of "
-        +(int)(taxRate*100)+"%, is $"+dollars+"."+dimes+pennies);
+        +(int)(taxRate*100)+"%, is $"+dollars+'.'+dimes+pennies);
     }
 }
