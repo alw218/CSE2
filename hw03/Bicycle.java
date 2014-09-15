@@ -1,6 +1,6 @@
 // Amber Wallace
 // 9/10/2014
-// hw03-Arithmetic
+// hw03-Bicycle
 
 //import scanner
 import java.util.Scanner;
