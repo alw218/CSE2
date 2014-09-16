@@ -16,7 +16,7 @@ public class Root{
         double cube=input.nextDouble();
         double guess=cube/3; //initial guess
         //updated aproximations
-        guess=(2*guess*guess*guess+cube)/(3*guess*guess);
+        guess=(guess*guess*guess+cube)/(3*guess*guess);
         guess=(2*guess*guess*guess+cube)/(3*guess*guess);
         guess=(2*guess*guess*guess+cube)/(3*guess*guess);
         guess=(2*guess*guess*guess+cube)/(3*guess*guess);
