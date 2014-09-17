@@ -1,6 +1,7 @@
 //Amber Wallace
 //9/13/2014
 //hw03-FourDigits
+//print the first four decimals of a double
 
 //import scanner
 import java.util.Scanner;

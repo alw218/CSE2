@@ -1,6 +1,7 @@
 //Amber Wallace
 //9/13/2014
 //hw03-Root
+//estimate cube root of a given number
 
 //import Scanner
 import java.util.Scanner;

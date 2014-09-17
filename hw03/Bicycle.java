@@ -1,6 +1,7 @@
 //Amber Wallace
 //9/10/2014
 //hw03-Bicycle
+//find distance, time, and average mph for bike trip
 
 //import scanner
 import java.util.Scanner;
