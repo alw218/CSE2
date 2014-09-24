@@ -24,20 +24,36 @@ public class Month{
                 if(month==2){ //check if leap year needs to be taken into consideration
                     //ask for year
                     System.out.print("Enter year- ");
-                    //collect data for year
-                    int year=input.nextInt();
-                    //find remainders for division by 4 100 and 400 to decide if leap year
-                    int four=year%4;
-                    int onehun=year%100;
-                    int fourhun=year%400;
-                    // if divisible by 400 than leap year
-                    // if divisible by 4 but not 100 than leap year
-                    // else not a leap year
-                    if((four==0 && onehun!=0) || fourhun==0){ //if leap year
-                        days=29;
+                    //check if input is int
+                    if(input.hasNextInt()){
+                         //collect data for year
+                        int year=input.nextInt();
+                        //check if year is positive
+                        if(year>0){
+                            //find remainders for division by 4 100 and 400 to decide if leap year
+                            int four=year%4;
+                            int onehun=year%100;
+                            int fourhun=year%400;
+                            // if divisible by 400 than leap year
+                            // if divisible by 4 but not 100 than leap year
+                            // else not a leap year
+                            if((four==0 && onehun!=0) || fourhun==0){ //if leap year
+                                days=29;
+                            }
+                            else{ //not a leap year
+                               days=28;
+                            }
+                        }
+                        else{
+                            //reject input
+                            System.out.println("Year must be positive.");
+                            return;
+                        }
                     }
-                    else{ //not a leap year
-                        days=28;
+                    else{
+                        //reject input
+                        System.out.println("Year must be an integer.");
+                        return;
                     }
                 }
                 else{ //months hava a consistant amount of days from year to year
