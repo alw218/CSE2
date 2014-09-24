@@ -47,7 +47,7 @@ public class IncomeTax{
                     tax=0.0;
                 }
                 //calculate income tax
-                double incomeTax=(double)income*tax;
+                double incomeTax=(double)(int)((double)income*tax*100)/100;
                 //print data
                 System.out.println("The tax rate on $"+income+" is "+taxRate+"% and the tax is $"+incomeTax);
             }
