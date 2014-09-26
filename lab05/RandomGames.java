@@ -22,47 +22,47 @@ public class RandomGames{
         //get user input
         System.out.print("Enter R or r for Roulette, C or c for craps, P or p for pick a card- ");
         //check input
-        if(input.hasNext()){
+        if(input.hasNext("^[A-Za-z]$")){
             //check for letter
             String letter=input.next();
-            if(letter.equals("R") || letter.equals("r")){
-                //roulettee
-                //get random number
-                int rand=(int)(Math.random()*38);
-                //change 37 to 00
-                if(rand==37){
-                    //print 00
-                    System.out.println("Roulette: 00");
-                    return;
-                }
-                else{
-                    //print number
-                    System.out.println("Roulette: "+rand);
-                    return;
-                }
-                
-            }
-            else if(letter.equals("C") || letter.equals("c")){
-                //Craps
-                //program not finished message
-                System.out.println("This game is not yet ready :'(");
-                return;
-            }
-            else if(letter.equals("P") || letter.equals("p")){
-                //Pick a card
-                //program not finished message
-                System.out.println("This feature has not been implemented yet.");
-                return;
-            }
-            else{
-                //not an acceptable letter
-                System.out.println("This is not a game option.");
-                return;
+            switch(letter.charAt(0)){
+                case 'R':
+                case 'r':
+                    //roulettee
+                    //get random number
+                    int rand=(int)(Math.random()*38);
+                    //change 37 to 00
+                    if(rand==37){
+                        //print 00
+                        System.out.println("Roulette: 00");
+                        return;
+                    }
+                    else{
+                        //print number
+                        System.out.println("Roulette: "+rand);
+                        return;
+                    }
+                case 'C':
+                case 'c':
+                    //Craps
+                    //program not finished message
+                    System.out.println("This feature has not been implemented yet.");
+                    break;
+                case 'P':
+                case 'p':
+                    //Pick a card
+                    //program not finished message
+                    System.out.println("This feature has not been implemented yet.");
+                    break;
+                default:
+                    //not an acceptable letter
+                    System.out.println("This is not a game option.");
+                    break;
             }
         }
         else{
             //no input
-            System.out.println("You must pick a game to continue.");
+            System.out.println("This is not a game option.");
             return;
         }
     }
