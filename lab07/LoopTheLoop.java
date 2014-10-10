@@ -2,6 +2,12 @@
 //10/9/2014
 //lab07-LoopTheLoop
 
+/* Use a loop to print out a given number of ‘*’s on a line 
+(between 1-15). Next start with one star per line and increase
+the number of stars per line up until the given number of stars
+per line. Next, ask if the user would like to go again, and if
+yes, loop through the program again. */
+
 //import scanner
 import java.util.Scanner;
 //create class
