@@ -86,7 +86,7 @@ public class NumberStack{
             i++; //increment +1
         }
         
-        //do whle loop
+        //do while loop
         System.out.println("Do While Loop");
         i=1; //create incrementor
         do{ //number of blocks
@@ -115,8 +115,10 @@ public class NumberStack{
             while(j<=i);
             int m=1; //create incrementor
             do{
-                //add spaces to create indentation
-                System.out.print(" ");
+                if(n-i!=0){
+                    //add spaces to create indentation
+                    System.out.print(" ");
+                }
                 m++; //increment +1
             }
             while(m<=(n-i));
