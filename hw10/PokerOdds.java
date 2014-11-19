@@ -3,25 +3,9 @@
 //hw10-PokerOdds
 
 /*
-To randomly generate a poker hand, first assign a distinct number to each of the
-52 cards, 0, 1, …, 51, representing the clubs with 0 for an Ace of clubs, 1 for
-a King of clubs, 2 for a Queen, 3 for a Jack, 4 for a 10, 5 for a 9, .. 12 for the 
-2 of clubs.  The diamonds should start with 13 (ace of diamonds) and end with 25 
-(2 of diamonds), the hearts should start with with 26 (ace of hearts) and end with 
-38 (2 of hearts), and the spades start with 39 (Ace of spades) and end with 51 (2 
-of spades). Under this scheme, if n is the number of a random card, then n/13 returns
-the suit (0 = clubs, 1 = diamonds, …).  The expression n%13 generates the rank
-(0 = ace, 1 = king, etc).  Now, to randomly draw five cards from a deck of 52 cards, 
-start with an array of 52 entries, where the entries are initialized to 0, 1, …, 51 
-respectively. That array represents the deck.  Represent the hand of cards with an 
-array of size 5, where each member of the array is initialized to -1.  Next, “draw”
-the first card by generating a random number between 0 and 51 inclusive. Use that 
-number as an index into the array and store that number in the first array of the 
-hand.  In the deck, set that position in the array equal to -1, then swap the value 
-of the array position you randomly selected (that you just set to -1) with the last 
-member of the deck array (initially the array member with index 51).  That swap 
-allows you to select the next random card by generating a random number from 0 to 50 
-inclusive, and swapping the selected card again, etc, until you have drawn 5 cards.
+Randomly generate a poker hand and show cards. Repeat 10000 times and keep track
+of how many times exactly one pair comes up for each card value. Also keep track
+of how many hands don't have exactaly one pair. Print results. 
 */
 
 //import random number generator
@@ -75,48 +59,150 @@ public class PokerOdds{
                 deck[51-i]=-1;
             }
             //create array for card value conversions
-            //String[] cardValue=new String[13];
             String[] cardValue={"A","K","Q","J","10","9","8","7","6","5","4","3","2"};
-            String clubs="Clubs:\t";
+            //create strings for each set of possible card values
+            String clubs="Clubs:\t\t";
             String diamonds="Diamonds:\t";
-            String hearts="Hearts:\t";
-            String spades="Spades:\t";
+            String hearts="Hearts:\t\t";
+            String spades="Spades:\t\t";
             for(int i=0; i<5; i++){
-                if((int)(hand[i]/13)==0){
-                    int card=hand[i]%13;
-                    clubs+=cardValue[card]+" ";
+                if((int)(hand[i]/13)==0){ //if club
+                    int card=hand[i]%13; //find value
+                    clubs+=cardValue[card]+" "; //add value to group of clubs
                 }
             }
             for(int i=0; i<5; i++){
-                if((int)(hand[i]/13)==1){
-                    int card=hand[i]%13;
-                    diamonds+=cardValue[card]+" ";
+                if((int)(hand[i]/13)==1){ //if diamond
+                    int card=hand[i]%13; //find value
+                    diamonds+=cardValue[card]+" "; //add value to group of diamonds
                 }
             }
             for(int i=0; i<5; i++){
-                if((int)(hand[i]/13)==2){
-                    int card=hand[i]%13;
-                    hearts+=cardValue[card]+" ";
+                if((int)(hand[i]/13)==2){ //if heart
+                    int card=hand[i]%13; //find value
+                    hearts+=cardValue[card]+" "; //add value to group of hearts
                 }
             }
-            for(int i=0; i<5; i++){
-                if((int)(hand[i]/13)==3){
-                    int card=hand[i]%13;
-                    spades+=cardValue[card]+" ";
+            for(int i=0; i<5; i++){ 
+                if((int)(hand[i]/13)==3){ //if spade
+                    int card=hand[i]%13; //find value
+                    spades+=cardValue[card]+" "; //add value to group of spades
                 }
             }
+            //print card hands
             System.out.println(clubs);
             System.out.println(diamonds);
             System.out.println(hearts);
             System.out.println(spades);
+            System.out.println();
+            //ask to go again
             System.out.print("Go again? Enter 'y' or 'Y', anything else to quit- ");
+            //store answer to goAgain
             goAgain=input.next();
-        }while(goAgain.equals("y") || goAgain.equals("Y"));
+        }while(goAgain.equals("y") || goAgain.equals("Y")); //if answer is yes go again
     }
     
     //create method simulateOdds
     public static void simulateOdds(){
-        //
+        //create new scanner
+        Scanner input=new Scanner(System.in);
+        //create new Random
+        Random random=new Random();
+        //create array for card value conversions
+        String[] cardValue={"A","K","Q","J","10","9","8","7","6","5","4","3","2"};
+        //create var to store cycles with not exactally one pair
+        int noPair=0;
+        //keep track of cycles
+        int cycles=0;
+        int[] dupCount=new int[13];
+        //set all initial dupCount values to 0
+        for(int i=0; i<13; i++){
+            dupCount[i]=0;
+        }
+        //do 10000 cycles
+        while(cycles<10000){
+            //generate array for deck of cards
+            int[] deck=new int[52];
+            for(int i=0; i<52; i++){
+                //assign numbers 0-51
+                deck[i]=i;
+            }
+            //generate array for hand
+            int[] hand=new int[5];
+            for(int i=0; i<5; i++){
+                //set all hand values equal to -1 initially 
+                hand[i]=-1;
+            }
+            for(int i=0; i<5; i++){
+                //generate random draw
+                int draw=random.nextInt(52-i);
+                //replace spot in hand with draw card from deck
+                hand[i]=deck[draw];
+                //replace card in deck with last card from deck
+                deck[draw]=deck[51-i];
+                //replace last card in deck with -1 
+                deck[51-i]=-1;
+            }
+            if(exactlyOneDup(hand)){
+                int x=whichDup(hand);
+                //increase dup count for value of duplicate
+                dupCount[x]++;
+            }
+            else{
+                noPair++;
+            }
+            cycles++;
+        }
+        //print results
+        System.out.println();
+        System.out.println("Rank \tFrequency of exactly one pair");
+        //loop through results
+        for(int i=0; i<13; i++){
+            System.out.println(cardValue[i]+": \t"+dupCount[i]);
+        }
+        System.out.println("----------------------------");
+        System.out.println("Total not exactly one pair: "+noPair);
+    }
+    
+    //create method for exactally one dup
+    public static boolean exactlyOneDup(int num[]){
+        //test for exactly one dup
+        //create boolean variable
+        boolean test=false;
+        //create var to store number of instances of dups
+        int numDups=0;
+        for(int number=0; number<num.length; number++){ //cycle through members of array
+            for(int check=0; check<num.length; check++){ //for each member of the array cycle through each member of the same array
+                if(check!=number){ //if the member of the array is not the same
+                    if(num[check]%13==num[number]%13){ //if the members of the array equal each other
+                        numDups++; //increment instances of dups
+                    }
+                }
+            }
+        }
+        if(numDups==2){ //if instances of dups = 2 (one duplicate)
+            test=true; //result is true
+        }
+        return test; //return result 
+    }
+    
+    //create method for whichDup
+    public static int whichDup(int num[]){
+        //test for whichDup
+        //create int variable
+        int test=0;
+        //create var to store number of instances of dups
+        int numDups=0;
+        for(int number=0; number<num.length; number++){ //cycle through members of array
+            for(int check=0; check<num.length; check++){ //for each member of the array cycle through each member of the same array
+                if(check!=number){ //if the member of the array is not the same
+                    if(num[check]%13==num[number]%13){ //if the members of the array equal each other
+                        test=num[check]%13; //instances of dups
+                    }
+                }
+            }
+        }
+        return test; //return result 
     }
 }
 
