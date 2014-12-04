@@ -14,9 +14,9 @@ public class Enigma1 {
         double percent;
         Scanner input = new Scanner(System.in);
         System.out.print("Enter a value for the percent (0, 1,...99)- ");
-        if (input.hasNextDouble()) {
+        if (input.hasNextDouble()) { //check for acceptable input
             double x = input.nextDouble();
-            if (x < 0 || x > 99) {
+            if (x < 0 || x > 99) { //check for value within range
                 System.out.println("You did not enter an acceptable value.");
             }
             else {
@@ -45,9 +45,9 @@ public class Enigma1 {
  *    and fix the errors)
  *    Hint: What kinds of input are unacceptable? What kinds of
  *        acceptable input don't produce the correct answer?
- *  1-x/100 needs to be 1-(x
- * create a variable for remaining proportion and print that instead of testing for select proportions
- * 
+ *  comparing values, use 100-x==proportion*100 for better results
+ * ensure double is entered before trying to store it in x
+ * make sure double is within range before using it
  * 
  */
 
