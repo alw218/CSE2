@@ -1,3 +1,7 @@
+//Amber Wallace
+//10/5/2014
+//lab06-Enigma3
+
 /* Insert System.out.println() statements in the code
  * below, displaying the status of n and k, which 
  * should help you identify when n  or k becomes 0 and causes
@@ -45,15 +49,15 @@ public class Enigma3{
         n-=3;
         k-=5;
     }
-     out+=1/n + 1/k;   
+     out+=1/n + 0; //replaced 1/k with 0 //division by zero (1/k) k=0
     System.out.println(out);
   }
 }
 
 /*
  * Error report:
- * 
- * 
+ * line 52 k=0 division by zero error
+ * don't divide by k or change k to something other than 0
  * 
  * 
  */
